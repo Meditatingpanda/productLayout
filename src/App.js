@@ -4,36 +4,29 @@ import Navbar from "./components/Navbar";
 import Product from "./components/Product";
 import Products from "./components/Products";
 import { Data } from "./Data";
-
 function App() {
   const [brand, setBrand] = useState(null);
   const [color, setColor] = useState(null);
   const [discount, setDiscount] = useState(null);
   const [category, setCategory] = useState();
-  const [newData, setNewData] = useState(null);
+  const [newData, setNewData] = useState(Data);
   const [sortValue, setSortValue] = useState("");
-  let times=0;
+  const applyFilters = () => {
+    let updatedList = Data;
+    if (color) updatedList = updatedList.filter((key) => key.color === color);
+    if (brand) updatedList = updatedList.filter((key) => key.brand === brand);
+    if (discount)
+      updatedList = updatedList.filter((key) => key.discount >= discount);
+    if (category)
+      updatedList = updatedList.filter((key) => key.category === category);
+      if (sortValue === 2) {
+        updatedList=(updatedList.sort((a, b) => a.price - b.price));
+      }
+    setNewData(updatedList);
+  };
   useEffect(() => {
-    setNewData([...Data]);
-  }, []);
-  useEffect(() => {
-    if (color) setNewData(Data.filter((key) => key.color === color));
-  }, [color]);
-  useEffect(() => {
-    if (brand) setNewData(Data.filter((key) => key.brand === brand));
-  }, [brand]);
-  useEffect(() => {
-    if (discount) setNewData(Data.filter((key) => key.discount >= discount));
-  }, [discount]);
-  useEffect(() => {
-    if (category) setNewData(Data.filter((key) => key.category === category));
-  }, [category]);
-  useEffect(() => {
-    if (sortValue===2) {
-      setNewData(newData.sort((a, b) => a.price - b.price));
-    }
-  }, [sortValue]);
-  console.log(sortValue);
+    applyFilters();
+  }, [color, brand, discount, category,sortValue]);
   return (
     <>
       <Navbar />

@@ -211,31 +211,7 @@ export  const Data = [
     category:'casual',
     
   },
-  {
-    id:18,
-    img: "https://assets.myntassets.com/f_webp,dpr_2.0,q_60,w_210,c_limit,fl_progressive/assets/images/1700944/2019/6/8/972c9498-3a37-4d5d-976c-4493b4d5c0021559989322793-HRX-by-Hrithik-Roshan-Men-Yellow-Printed-Round-Neck-T-Shirt--1.jpg",
-    brand: "HrX",
-    ratings: "4.3",
-    des: "Pure Cotton",
-    price: "699",
-    discount: "50",
-    color:'yellow',
-    category:'casual',
-    
-  },
-  
-  {
-    id:19,
-    img: "https://assets.myntassets.com/f_webp,dpr_2.0,q_60,w_210,c_limit,fl_progressive/assets/images/1987412/2017/8/29/11504009904650-HRX-by-Hrithik-Roshan-Men-Black-Solid-Round-Neck-T-shirt-8741504009904381-1.jpg",
-    brand: "HrX",
-    ratings: "4.1",
-    des: "Sleeved T-shirt",
-    price: "899",
-    discount: "60",
-    color:'black',
-    category:'casual',
-    
-  },
+
   
   {
     id:20,
@@ -245,6 +221,30 @@ export  const Data = [
     des: "Men Slim Casual Shirt",
     price: "2299",
     discount: "65",
+    color:'blue',
+    category:'casual',
+    
+  },
+  {
+    id:21,
+    img: "https://assets.myntassets.com/f_webp,dpr_2.0,q_60,w_210,c_limit,fl_progressive/assets/images/12504310/2020/12/28/6f535317-13fc-4273-bfe4-2a682a89762b1609149736015-Roadster-Men-Tshirts-5231609149734512-1.jpg",
+    brand: "Roadster",
+    ratings: "4.4",
+    des: "Men Slim Casual Shirt",
+    price: "2299",
+    discount: "65",
+    color:'yellow',
+    category:'casual',
+    
+  },
+  {
+    id:22,
+    img: "https://assets.myntassets.com/f_webp,dpr_2.0,q_60,w_210,c_limit,fl_progressive/assets/images/6791214/2018/7/23/a194bd48-f1f1-4ce5-ab73-5feea12857f51532336453194-Roadster-Men-Blue-Regular-Fit-Solid-Casual-Shirt-89615323364-1.jpg",
+    brand: "Roadster",
+    ratings: "4.4",
+    des: "Men Slim Casual Shirt",
+    price: "2299",
+    discount: "85",
     color:'blue',
     category:'casual',
     
