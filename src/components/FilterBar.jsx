@@ -9,7 +9,14 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-function FilterBar({setBrand,setColor,setDiscount}) {
+function FilterBar({
+  sortValue,
+  setBrand,
+  setColor,
+  setDiscount,
+  setSortValue,
+  setCategory,
+}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl1, setAnchorEl1] = React.useState(null);
   const [anchorEl2, setAnchorEl2] = React.useState(null);
@@ -19,23 +26,18 @@ function FilterBar({setBrand,setColor,setDiscount}) {
   const open2 = Boolean(anchorEl2);
   const open3 = Boolean(anchorEl3);
   const handleClick = (event) => {
-  //  console.log(event.currentTarget);
+    //  console.log(event.currentTarget);
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  const [age, setAge] = React.useState("");
-
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setSortValue(event.target.value);
   };
 
-  
-  
-  
- // console.log(color);
+  // console.log(color);
 
   return (
     <div className="min-h-[4rem] shadow-md mt-3 pb-3 flex justify-center items-center">
@@ -54,17 +56,17 @@ function FilterBar({setBrand,setColor,setDiscount}) {
               </Button>
               <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
                 <MenuItem onClick={handleClose}>
-                  <FormGroup onClick={(e)=>setBrand("Roadster")}>
+                  <FormGroup onClick={(e) => setBrand("Roadster")}>
                     <FormControlLabel control={<Checkbox />} label="Roadster" />
                   </FormGroup>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
-                  <FormGroup onClick={(e)=>setBrand("Here&Now")}>
+                  <FormGroup onClick={(e) => setBrand("Here&Now")}>
                     <FormControlLabel control={<Checkbox />} label="Here&Now" />
                   </FormGroup>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
-                  <FormGroup onClick={(e)=>setBrand("HrX")}>
+                  <FormGroup onClick={(e) => setBrand("HrX")}>
                     <FormControlLabel control={<Checkbox />} label="HrX" />
                   </FormGroup>
                 </MenuItem>
@@ -85,17 +87,17 @@ function FilterBar({setBrand,setColor,setDiscount}) {
                 onClose={(e) => setAnchorEl1(null)}
               >
                 <MenuItem onClick={(e) => setAnchorEl1(null)}>
-                  <FormGroup onClick={(e)=>setColor("black")}>
+                  <FormGroup onClick={(e) => setColor("black")}>
                     <FormControlLabel control={<Checkbox />} label="Black" />
                   </FormGroup>
                 </MenuItem>
                 <MenuItem onClick={(e) => setAnchorEl1(null)}>
-                  <FormGroup onClick={(e)=>setColor("blue")}>
+                  <FormGroup onClick={(e) => setColor("blue")}>
                     <FormControlLabel control={<Checkbox />} label="blue" />
                   </FormGroup>
                 </MenuItem>
                 <MenuItem onClick={(e) => setAnchorEl1(null)}>
-                  <FormGroup onClick={(e)=>setColor("yellow")}>
+                  <FormGroup onClick={(e) => setColor("yellow")}>
                     <FormControlLabel control={<Checkbox />} label="yellow" />
                   </FormGroup>
                 </MenuItem>
@@ -116,18 +118,18 @@ function FilterBar({setBrand,setColor,setDiscount}) {
                 onClose={(e) => setAnchorEl2(null)}
               >
                 <MenuItem onClick={(e) => setAnchorEl2(null)}>
-                  <FormGroup onClick={(e)=>setDiscount("75")}>
+                  <FormGroup onClick={(e) => setDiscount("75")}>
                     <FormControlLabel control={<Checkbox />} label=">75%" />
                   </FormGroup>
                 </MenuItem>
                 <MenuItem onClick={(e) => setAnchorEl2(null)}>
-                  <FormGroup onClick={(e)=>setDiscount("50")}>
+                  <FormGroup onClick={(e) => setDiscount("50")}>
                     <FormControlLabel control={<Checkbox />} label=">50%" />
                   </FormGroup>
                 </MenuItem>
                 <MenuItem onClick={(e) => setAnchorEl2(null)}>
-                  <FormGroup onClick={(e)=>setDiscount("30")}>
-                    <FormControlLabel control={<Checkbox />} label=">30%" />
+                  <FormGroup onClick={(e) => setDiscount("25")}>
+                    <FormControlLabel control={<Checkbox />} label=">25%" />
                   </FormGroup>
                 </MenuItem>
               </Menu>
@@ -148,12 +150,12 @@ function FilterBar({setBrand,setColor,setDiscount}) {
                 onClose={(e) => setAnchorEl3(null)}
               >
                 <MenuItem onClick={(e) => setAnchorEl3(null)}>
-                  <FormGroup>
+                  <FormGroup onClick={() => setCategory("formal")}>
                     <FormControlLabel control={<Checkbox />} label="Formal" />
                   </FormGroup>
                 </MenuItem>
                 <MenuItem onClick={(e) => setAnchorEl3(null)}>
-                  <FormGroup>
+                  <FormGroup onClick={() => setCategory("party")}>
                     <FormControlLabel
                       control={<Checkbox />}
                       label="Party Wear"
@@ -161,7 +163,7 @@ function FilterBar({setBrand,setColor,setDiscount}) {
                   </FormGroup>
                 </MenuItem>
                 <MenuItem onClick={(e) => setAnchorEl3(null)}>
-                  <FormGroup>
+                  <FormGroup onClick={() => setCategory("casual")}>
                     <FormControlLabel control={<Checkbox />} label="Casual" />
                   </FormGroup>
                 </MenuItem>
@@ -176,14 +178,14 @@ function FilterBar({setBrand,setColor,setDiscount}) {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={age}
+            value={sortValue}
             label="Age"
             onChange={handleChange}
           >
-            <MenuItem value={10}>Price:High To Low</MenuItem>
-            <MenuItem value={20}>Price:Low To High</MenuItem>
-            <MenuItem value={30}>Better Discount</MenuItem>
-            <MenuItem value={30}>Costomer Ratings</MenuItem>
+            <MenuItem value={1}>Price:High To Low</MenuItem>
+            <MenuItem value={2}>Price:Low To High</MenuItem>
+            <MenuItem value={3}>Better Discount</MenuItem>
+            <MenuItem value={4}>Costomer Ratings</MenuItem>
           </Select>
         </FormControl>
       </div>

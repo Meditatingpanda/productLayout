@@ -1,8 +1,13 @@
 import { Grid } from "@mui/material";
 import React from "react";
+import EmptyProduct from "./EmptyProduct";
 import Product from "./Product";
 
 function Products({ Data }) {
+  console.log(Boolean(Data));
+  if (Data && !Data.length) {
+    return <EmptyProduct />;
+  }
   return (
     <div>
       <Grid container spacing={2}>
