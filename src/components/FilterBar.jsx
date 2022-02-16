@@ -9,7 +9,7 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-function FilterBar() {
+function FilterBar({setBrand,setColor,setDiscount}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl1, setAnchorEl1] = React.useState(null);
   const [anchorEl2, setAnchorEl2] = React.useState(null);
@@ -19,7 +19,7 @@ function FilterBar() {
   const open2 = Boolean(anchorEl2);
   const open3 = Boolean(anchorEl3);
   const handleClick = (event) => {
-    console.log(event.currentTarget);
+  //  console.log(event.currentTarget);
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
@@ -33,6 +33,9 @@ function FilterBar() {
   };
 
   
+  
+  
+ // console.log(color);
 
   return (
     <div className="min-h-[4rem] shadow-md mt-3 pb-3 flex justify-center items-center">
@@ -51,17 +54,17 @@ function FilterBar() {
               </Button>
               <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
                 <MenuItem onClick={handleClose}>
-                  <FormGroup>
+                  <FormGroup onClick={(e)=>setBrand("Roadster")}>
                     <FormControlLabel control={<Checkbox />} label="Roadster" />
                   </FormGroup>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
-                  <FormGroup>
+                  <FormGroup onClick={(e)=>setBrand("Here&Now")}>
                     <FormControlLabel control={<Checkbox />} label="Here&Now" />
                   </FormGroup>
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
-                  <FormGroup>
+                  <FormGroup onClick={(e)=>setBrand("HrX")}>
                     <FormControlLabel control={<Checkbox />} label="HrX" />
                   </FormGroup>
                 </MenuItem>
@@ -82,17 +85,17 @@ function FilterBar() {
                 onClose={(e) => setAnchorEl1(null)}
               >
                 <MenuItem onClick={(e) => setAnchorEl1(null)}>
-                  <FormGroup>
+                  <FormGroup onClick={(e)=>setColor("black")}>
                     <FormControlLabel control={<Checkbox />} label="Black" />
                   </FormGroup>
                 </MenuItem>
                 <MenuItem onClick={(e) => setAnchorEl1(null)}>
-                  <FormGroup>
+                  <FormGroup onClick={(e)=>setColor("blue")}>
                     <FormControlLabel control={<Checkbox />} label="blue" />
                   </FormGroup>
                 </MenuItem>
                 <MenuItem onClick={(e) => setAnchorEl1(null)}>
-                  <FormGroup>
+                  <FormGroup onClick={(e)=>setColor("yellow")}>
                     <FormControlLabel control={<Checkbox />} label="yellow" />
                   </FormGroup>
                 </MenuItem>
@@ -113,17 +116,17 @@ function FilterBar() {
                 onClose={(e) => setAnchorEl2(null)}
               >
                 <MenuItem onClick={(e) => setAnchorEl2(null)}>
-                  <FormGroup>
+                  <FormGroup onClick={(e)=>setDiscount("75")}>
                     <FormControlLabel control={<Checkbox />} label=">75%" />
                   </FormGroup>
                 </MenuItem>
                 <MenuItem onClick={(e) => setAnchorEl2(null)}>
-                  <FormGroup>
+                  <FormGroup onClick={(e)=>setDiscount("50")}>
                     <FormControlLabel control={<Checkbox />} label=">50%" />
                   </FormGroup>
                 </MenuItem>
                 <MenuItem onClick={(e) => setAnchorEl2(null)}>
-                  <FormGroup>
+                  <FormGroup onClick={(e)=>setDiscount("30")}>
                     <FormControlLabel control={<Checkbox />} label=">30%" />
                   </FormGroup>
                 </MenuItem>

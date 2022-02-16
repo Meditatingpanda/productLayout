@@ -44,7 +44,7 @@ function Product({prop}) {
               alignItems: "center"
             }}
           >
-            <Typography variant="h5">Rs:{prop.price*(1-prop.discount/100)}</Typography>
+            <Typography variant="h5">Rs:{Math.floor(prop.price*(1-prop.discount/100))}</Typography>
             <Typography
               variant="body2"
               color="text.secondary"
