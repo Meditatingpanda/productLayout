@@ -16,6 +16,7 @@ function FilterBar({
   setDiscount,
   setSortValue,
   setCategory,
+ 
 }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl1, setAnchorEl1] = React.useState(null);
@@ -37,6 +38,9 @@ function FilterBar({
     setSortValue(event.target.value);
   };
 
+  const clearFilter=()=>{
+    window.location.reload()
+  }
   // console.log(color);
 
   return (
@@ -168,6 +172,13 @@ function FilterBar({
                   </FormGroup>
                 </MenuItem>
               </Menu>
+            </span>
+            <span>
+              <Button 
+               onClick={clearFilter}
+              sx={{ color: "red" }}>
+                Clear
+              </Button>
             </span>
           </div>
         </div>

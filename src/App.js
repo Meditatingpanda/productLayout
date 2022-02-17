@@ -11,7 +11,7 @@ function App() {
   const [category, setCategory] = useState();
   const [newData, setNewData] = useState(Data);
   const [sortValue, setSortValue] = useState("");
-let temp=2;
+
   const applyFilters = () => {
     let updatedList = Data;
     if (color) updatedList = updatedList.filter((key) => key.color === color);
@@ -20,31 +20,30 @@ let temp=2;
       updatedList = updatedList.filter((key) => key.discount >= discount);
     if (category)
       updatedList = updatedList.filter((key) => key.category === category);
-   
+
     setNewData(updatedList);
   };
-  const sortArray=()=>{
+  
+  const sortArray = () => {
     let updatedList = Data;
-    if (sortValue==1) {
-      updatedList = Data.sort((a, b) => -a.price +b.price);
-    }
-    else if (sortValue==2) {
+    if (sortValue === 1) {
+      updatedList = Data.sort((a, b) => -a.price + b.price);
+    } else if (sortValue === 2) {
       updatedList = Data.sort((a, b) => a.price - b.price);
-    }
-    else if (sortValue==3) {
+    } else if (sortValue === 3) {
       updatedList = Data.sort((a, b) => -a.discount + b.discount);
-    }
-    else if (sortValue==3) {
-      updatedList = Data.sort((a, b) =>a.ratings-b.ratings);
+    } else if (sortValue === 3) {
+      updatedList = Data.sort((a, b) => a.ratings - b.ratings);
     }
     setNewData(updatedList);
-  }
+  };
   useEffect(() => {
     applyFilters();
   }, [color, brand, discount, category]);
-  useEffect(()=>{
-     sortArray();
-  },[sortValue]);
+
+  useEffect(() => {
+    sortArray();
+  }, [sortValue]);
   return (
     <>
       <Navbar />
@@ -55,6 +54,7 @@ let temp=2;
         setSortValue={setSortValue}
         setCategory={setCategory}
         sortValue={sortValue}
+        // clearFilter={clearFilter}
       />
       <Products Data={newData} />
     </>
