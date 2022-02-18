@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import FilterBar from "./components/FilterBar";
 import Navbar from "./components/Navbar";
-import Product from "./components/Product";
 import Products from "./components/Products";
 import { Data } from "./Data";
 function App() {
@@ -20,30 +19,26 @@ function App() {
       updatedList = updatedList.filter((key) => key.discount >= discount);
     if (category)
       updatedList = updatedList.filter((key) => key.category === category);
-
+    sortArray();
     setNewData(updatedList);
   };
-  
+
   const sortArray = () => {
     let updatedList = Data;
-    if (sortValue === 1) {
-      updatedList = Data.sort((a, b) => -a.price + b.price);
-    } else if (sortValue === 2) {
-      updatedList = Data.sort((a, b) => a.price - b.price);
-    } else if (sortValue === 3) {
-      updatedList = Data.sort((a, b) => -a.discount + b.discount);
-    } else if (sortValue === 3) {
-      updatedList = Data.sort((a, b) => a.ratings - b.ratings);
-    }
+    if (localStorage.check === "HL")
+      updatedList.sort((a, b) => a.price - b.price);
+    if (localStorage.check === "LH")
+      updatedList.sort((a, b) => b.price - a.price);
+    if (localStorage.check === "BD")
+      updatedList.sort((a, b) => a.discount - b.discount);
+    if (localStorage.check === "CR")
+      updatedList.sort((a, b) => a.ratings - b.ratings);
     setNewData(updatedList);
   };
   useEffect(() => {
     applyFilters();
-  }, [color, brand, discount, category]);
+  }, [color, brand, discount, category, sortValue]);
 
-  useEffect(() => {
-    sortArray();
-  }, [sortValue]);
   return (
     <>
       <Navbar />

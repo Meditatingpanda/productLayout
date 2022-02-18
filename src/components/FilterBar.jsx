@@ -36,12 +36,13 @@ function FilterBar({
 
   const handleChange = (event) => {
     setSortValue(event.target.value);
+    localStorage.check=event.target.value;
   };
 
   const clearFilter=()=>{
     window.location.reload()
   }
-  // console.log(color);
+  
 
   return (
     <div className="min-h-[4rem] shadow-md mt-3 pb-3 flex justify-center items-center">
@@ -193,10 +194,10 @@ function FilterBar({
             label="Age"
             onChange={handleChange}
           >
-            <MenuItem value={1}>Price:High To Low</MenuItem>
-            <MenuItem value={2}>Price:Low To High</MenuItem>
-            <MenuItem value={3}>Better Discount</MenuItem>
-            <MenuItem value={4}>Costomer Ratings</MenuItem>
+            <MenuItem value={'HL'}>Price:High To Low</MenuItem>
+            <MenuItem value={'LH'}>Price:Low To High</MenuItem>
+            <MenuItem value={'BD'}>Better Discount</MenuItem>
+            <MenuItem value={'CR'}>Costomer Ratings</MenuItem>
           </Select>
         </FormControl>
       </div>
