@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -8,6 +8,7 @@ import Checkbox from "@mui/material/Checkbox";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { Data } from "../Data";
 
 function FilterBar({
   sortValue,
@@ -16,7 +17,7 @@ function FilterBar({
   setDiscount,
   setSortValue,
   setCategory,
- 
+  setNewData,
 }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl1, setAnchorEl1] = React.useState(null);
@@ -26,6 +27,7 @@ function FilterBar({
   const open1 = Boolean(anchorEl1);
   const open2 = Boolean(anchorEl2);
   const open3 = Boolean(anchorEl3);
+  let temp = "";
   const handleClick = (event) => {
     //  console.log(event.currentTarget);
     setAnchorEl(event.currentTarget);
@@ -35,14 +37,40 @@ function FilterBar({
   };
 
   const handleChange = (event) => {
-    setSortValue(event.target.value);
-    localStorage.check=event.target.value;
+    temp = event.target.value;
+    setSortValue(temp);
+    sortArray();
+  };
+  const percentageCal = (value, per) => {
+    return (1 - per / 100) * value;
   };
 
-  const clearFilter=()=>{
-    window.location.reload()
-  }
-  
+  const sortArray = () => {
+    let updatedList = Data;
+    if (temp === "HL")
+      updatedList.sort((a, b) => {
+        return (
+          percentageCal(b.price, b.discount) -percentageCal(a.price, a.discount) 
+         
+        );
+      });
+    if (temp === "LH")
+      updatedList.sort((a, b) => {
+        return (
+          percentageCal(a.price, a.discount) -
+          percentageCal(b.price, b.discount)
+          
+        );
+      });
+    if (temp === "BD") updatedList.sort((a, b) =>   b.discount-a.discount);
+    if (temp === "CR") updatedList.sort((a, b) =>   b.ratings-a.ratings);
+    console.log(updatedList);
+    setNewData(updatedList);
+  };
+
+  const clearFilter = () => {
+    window.location.reload();
+  };
 
   return (
     <div className="min-h-[4rem] shadow-md mt-3 pb-3 flex justify-center items-center">
@@ -175,9 +203,7 @@ function FilterBar({
               </Menu>
             </span>
             <span>
-              <Button 
-               onClick={clearFilter}
-              sx={{ color: "red" }}>
+              <Button onClick={clearFilter} sx={{ color: "red" }}>
                 Clear
               </Button>
             </span>
@@ -194,10 +220,10 @@ function FilterBar({
             label="Age"
             onChange={handleChange}
           >
-            <MenuItem value={'HL'}>Price:High To Low</MenuItem>
-            <MenuItem value={'LH'}>Price:Low To High</MenuItem>
-            <MenuItem value={'BD'}>Better Discount</MenuItem>
-            <MenuItem value={'CR'}>Costomer Ratings</MenuItem>
+            <MenuItem value={"HL"}>Price:High To Low</MenuItem>
+            <MenuItem value={"LH"}>Price:Low To High</MenuItem>
+            <MenuItem value={"BD"}>Better Discount</MenuItem>
+            <MenuItem value={"CR"}>Costomer Ratings</MenuItem>
           </Select>
         </FormControl>
       </div>
